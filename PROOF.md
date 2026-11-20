@@ -84,7 +84,19 @@ $$
 =\frac A{1920}.
 $$
 
-The downstream Lean theorem starts at the displayed fixed-length variance estimate. Passing from RH to that estimate is the remaining external analytic theorem. The main Lean statement makes this dependency explicit.
+## The formal bridge from RH
+
+The Lean proof invokes Steve Hubbard's Lean Lab theorem **selberg_sum_c** with its upper summation limit $M=N$. On ordinary RH it yields
+
+$$
+\sum_{k<N}\big(\psi(k+L)-\psi(k)-L\big)^2\ll NL(\log N+3)^2\qquad(1\le L\le N).
+$$
+
+Indeed $\log(N/L)\le\log N$, $1/\sqrt L\le1$ and $L^2\le NL$. The dependency is pinned to the Languasco–Zaccagnini entry of the original upstream repository. [Hubbard's theorem and proof](https://github.com/sthubbar/goldbach-lean/blob/93b86c05bb441be2ac0b3f06cc4c8624f8e8d0eb/entries/languascozaccagnini2012/LeanLab/PNTPort/Selberg/SumC.lean#L29-L35) · [Upstream authorship and porting notes](https://github.com/sthubbar/goldbach-lean/blob/93b86c05bb441be2ac0b3f06cc4c8624f8e8d0eb/entries/languascozaccagnini2012/PORTING.md)
+
+Put $F=\psi-\vartheta$. This is the nondecreasing weight of proper prime powers. Mathlib proves $0\le F(y)\le B\sqrt y$ for an absolute $B>0$. For $d_k=F(k+L)-F(k)$, cancellation of the two sums gives $\sum_{k<N}d_k\le L F(N+L)$. Since $0\le d_k\le F(N+L)$, it follows that $\sum_{k<N}d_k^2\le L F(N+L)^2\le 2B^2 NL$. Applying $(u-v)^2\le2u^2+2v^2$ gives the same order of variance for $\vartheta$ on integer windows. [Mathlib's prime-power estimate](https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/NumberTheory/Chebyshev.lean#L595-L603) · [Formal transfer to primes](SelbergSemiprimes/PrimePowers.lean)
+
+For a real starting point $t$ and real length $h$, put $k=\lfloor t\rfloor$ and $L=\lfloor h\rfloor$. The integer upper endpoint is either $k+L$ or $k+L+1$. If $E_j(k)=\vartheta(k+j)-\vartheta(k)-j$, monotonicity bounds the real error between $E_L(k)-1$ and $E_{L+1}(k)+1$. Its square is at most $2(E_L(k)^2+E_{L+1}(k)^2+1)$. Integrating over unit intervals and applying both integer-window bounds gives the required $O(Xh\log^2 X)$, uniformly for $1\le h\le X/20$ and $X\ge e^4$. [Real-window proof](SelbergSemiprimes/RealWindows.lean) · [Main theorem](SelbergSemiprimes.lean)
 
 ## Sources and attribution
 
