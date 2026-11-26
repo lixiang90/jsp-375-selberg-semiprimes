@@ -40,3 +40,5 @@ lake env leanchecker SelbergSemiprimes LeanLab.PNTPort.Selberg.SumC
 ```
 
 The audit expands the interval, composite filter, and least-prime-factor weight in the theorem statement. It prints the transitive axioms of the ordinary RH, Selberg and final theorems. [Statement audit](verification/Unconditional.lean) · [Build and kernel verification record](verification/unconditional.txt) · [Upstream Lean theorem](vendor/grh-compact/src/Main.lean) · [Final Lean theorem](SelbergSemiprimes.lean)
+
+To recheck the full compact dependency against the pinned Mathlib environment, run `lake build GRH/Lib GRH/New GRH/Main` and then `lake env lean --tstack=400000 verification/ReplayCompact.lean`. The kernel replay checked 51,804 declarations across all 794 compact modules. [Replay program](verification/ReplayCompact.lean)

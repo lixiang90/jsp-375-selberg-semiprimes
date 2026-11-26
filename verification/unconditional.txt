@@ -1,6 +1,6 @@
 JSP-000375 / Erdős 462 — unconditional statement and kernel audit
 Selected proof commit: beb0207cfee1a14b8b957a39ab7806a67f92310b
-Verification completed (UTC): 2026-11-26T10:00:58.2266474Z
+Verification completed (UTC): 2026-11-26T10:17:15.0735971Z
 Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc), Windows x86-64
 mathlib: 56a005855ea17e0b0958f73ec801ae140b0a1679
 
@@ -34,6 +34,17 @@ JSP375.erdos_462 : JSP375.Erdos462
 'JSP375.erdos_462' depends on axioms: [propext, Classical.choice, Quot.sound]
 
 Additional checks with the official LeanChecker
+
+Both prize repositories contain the identical upstream source tree. The
+shared upstream check was run once for that tree and these pins.
+The source in verification/ReplayCompact.lean imports Mathlib as its
+starting environment, collects every declaration introduced by the
+794 compact modules, rejects any added axiom, and checks the resulting
+declarations with the official Lean kernel replay. Both exported
+results must be theorems in the newly checked environment.
+
+$ lake env lean --tstack=400000 verification/ReplayCompact.lean
+Replayed 51804 declarations across 794 compact modules against Mathlib; both RH and Dirichlet nonvanishing are checked theorems.
 
 The following module declarations were replayed against their imports
 with replayFromImports. Both runs exited with code zero.
