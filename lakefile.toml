@@ -4,13 +4,17 @@ defaultTargets = ["SelbergSemiprimes"]
 [[require]]
 name = "mathlib"
 git = "https://github.com/leanprover-community/mathlib4"
-rev = "v4.35.0-rc3"
+rev = "56a005855ea17e0b0958f73ec801ae140b0a1679"
 
 [[require]]
-name = "GoldbachLeanLanguascoZaccagnini2012"
-git = "https://github.com/sthubbar/goldbach-lean"
-rev = "93b86c05bb441be2ac0b3f06cc4c8624f8e8d0eb"
-subDir = "entries/languascozaccagnini2012"
+name = "LeanLab"
+git = "https://github.com/sthubbar/lean-lab-ci"
+rev = "b2227987a4d27d724204d48257accd4e0936c5d4"
+subDir = "LeanLab"
+
+[[require]]
+name = "GRH"
+path = "vendor/grh-compact"
 
 [[lean_lib]]
 name = "SelbergSemiprimes"

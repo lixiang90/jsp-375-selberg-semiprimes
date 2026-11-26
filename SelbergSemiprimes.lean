@@ -2,6 +2,7 @@ import SelbergSemiprimes.Deduction
 import SelbergSemiprimes.Discrete
 import SelbergSemiprimes.RealWindows
 import SelbergSemiprimes.Hypothesis
+import Main
 
 namespace JSP375
 
@@ -13,8 +14,11 @@ theorem selberg_theta_of_rh (rh : RiemannHypothesis) : SelbergThetaEstimate := b
 theorem erdos_462_of_rh (rh : RiemannHypothesis) : Erdos462 :=
   erdos_462_of_selberg (selberg_theta_of_rh rh)
 
-theorem erdos_462 (grh : DirichletGRH) : Erdos462 :=
+theorem erdos_462_of_dirichletGRH (grh : DirichletGRH) : Erdos462 :=
   erdos_462_of_rh (riemannHypothesis_of_dirichletGRH grh)
+
+/-- The original lower bound for the weighted sum over composites in every sufficiently large window. -/
+theorem erdos_462 : Erdos462 := erdos_462_of_rh _root_.riemannHypothesis
 
 #check @erdos_462_of_rh
 #check @erdos_462
