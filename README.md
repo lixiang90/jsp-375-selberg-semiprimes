@@ -39,4 +39,4 @@ lake env lean verification/Unconditional.lean
 lake env leanchecker SelbergSemiprimes LeanLab.PNTPort.Selberg.SumC
 ```
 
-The audit expands the interval, composite filter, and least-prime-factor weight in the theorem statement. It prints the transitive axioms of the ordinary RH, Selberg and final theorems. [Statement audit](verification/Unconditional.lean) · [Upstream Lean theorem](vendor/grh-compact/src/Main.lean) · [Final Lean theorem](SelbergSemiprimes.lean)
+The audit expands the interval, composite filter, and least-prime-factor weight in the theorem statement. It prints the transitive axioms of the ordinary RH, Selberg and final theorems. [Statement audit](verification/Unconditional.lean) · [Build and kernel verification record](verification/unconditional.txt) · [Upstream Lean theorem](vendor/grh-compact/src/Main.lean) · [Final Lean theorem](SelbergSemiprimes.lean)

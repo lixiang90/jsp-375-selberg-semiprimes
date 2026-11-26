@@ -1,0 +1,63 @@
+JSP-000375 / Erdős 462 — unconditional statement and kernel audit
+Selected proof commit: beb0207cfee1a14b8b957a39ab7806a67f92310b
+Verification completed (UTC): 2026-11-26T10:00:58.2266474Z
+Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc), Windows x86-64
+mathlib: 56a005855ea17e0b0958f73ec801ae140b0a1679
+
+The statement audit quantifies over sufficiently large real x with uniform
+positive C and c. It expands both inclusive endpoints, the composite filter
+and the summand Nat.minFac(m)/m. The final theorem takes no argument.
+The Selberg source is Steve Hubbard’s Lean Lab build mirror,
+commit b2227987a4d27d724204d48257accd4e0936c5d4.
+
+GRH source and build
+
+Upstream: lsernau/grh-lean 72fead102f663d5c7a407964a13dc0cf9d977207
+Upstream grh-compact/src and local vendor/grh-compact/src Git tree: b834f80c6399db99d54ce171ba541c4a95a4f90f
+All 794 production Lean files have identical Git blob IDs in both trees.
+The local GRH package is a source dependency of the default build. The
+build reused the pinned mathlib and compact-proof build caches. The local
+upstream cold-build record for this source started with zero project
+objects and finished with all 794 production modules compiled.
+
+$ lake build GRH/Lib GRH/New GRH/Main
+Build completed successfully (9843 jobs).
+
+$ lake build
+Build completed successfully (9921 jobs).
+
+$ lake env lean verification/Unconditional.lean
+JSP375.erdos_462 : JSP375.Erdos462
+'riemannHypothesis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanLab.PNTPort.Selberg.selberg_sum_c' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JSP375.erdos_462_of_rh' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JSP375.erdos_462' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Additional checks with the official LeanChecker
+
+The following module declarations were replayed against their imports
+with replayFromImports. Both runs exited with code zero.
+  Statements
+  New.Main
+  Main
+  LeanLab.PNTPort.Selberg.SumC
+  SelbergSemiprimes.Discrete
+  SelbergSemiprimes.Deduction
+  SelbergSemiprimes
+
+To repeat these checks, save the following as a local .lean file and
+run lake env lean on it from the repository root.
+
+import LeanChecker
+
+#eval replayFromImports `Statements
+#eval replayFromImports `New.Main
+#eval replayFromImports `Main
+#eval replayFromImports `LeanLab.PNTPort.Selberg.SumC
+#eval replayFromImports `SelbergSemiprimes.Discrete
+#eval replayFromImports `SelbergSemiprimes.Deduction
+#eval replayFromImports `SelbergSemiprimes
+
+Clean checkout: lake exe cache get, then lake build, followed by the
+statement audit printed above. The README links the mathematical argument
+and the provenance of the upstream contributions.
